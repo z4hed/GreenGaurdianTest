@@ -1,13 +1,18 @@
 package com.example.testapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import Models.profile;
+import controllers.databaseController;
+import controllers.singletonDatabase;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 
 public class register_page extends AppCompatActivity {
 
@@ -18,6 +23,7 @@ public class register_page extends AppCompatActivity {
     private EditText password;
     private profile userProfile;
 
+    singletonDatabase dbInstance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +45,35 @@ public class register_page extends AppCompatActivity {
                 String emailEntered = email.getText().toString();
                 String userNameEntered = userName.getText().toString();
                 String passwordEntered = password.getText().toString();
-                userProfile = new profile(firstNameEntered,lastNameEntered,userNameEntered,passwordEntered,emailEntered);
 
+                //check if any of the statements are empty
+                AlertDialog.Builder builder = new AlertDialog.Builder(register_page.this);
+                if(!firstNameEntered.isEmpty() && !lastNameEntered.isEmpty() && !emailEntered.isEmpty() && !userNameEntered.isEmpty() && !passwordEntered.isEmpty())
+                {
+                    //successful profile creation.
+                    userProfile = new profile(firstNameEntered,lastNameEntered,userNameEntered,passwordEntered,emailEntered);
+                    singletonDatabase stdb = singletonDatabase.getInstance();
+                    databaseController dbController = stdb.getDatabaseController();
+                    dbController.addProfile(userProfile);
+                    dbController.fetchProfile(userProfile);
+                }
+                else{
+                    //Alert the user that some fields are empty
+                    alertUser(builder);
+                }
             }
         });
+    }
+
+    private void alertUser(AlertDialog.Builder builder)
+    {
+        builder.setMessage("Please enter all fields");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

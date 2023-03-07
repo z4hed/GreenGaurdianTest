@@ -1,5 +1,6 @@
 package Models;
 
+
 import java.util.ArrayList;
 
 public class profile {
@@ -16,5 +17,14 @@ public class profile {
         this.userName = userName;
         this.password = password;
         this.email = email;
+
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
