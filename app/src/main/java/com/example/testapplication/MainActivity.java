@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,11 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
-        Button registerButton = findViewById(R.id.register_button);
+        Button registerButton = findViewById(R.id.login_register_button);
         Button loginButton = findViewById(R.id.login_button);
 
-        EditText UserName= findViewById(R.id.login_username);
-        EditText Password = findViewById(R.id.login_password);
+        EditText UserName= findViewById(R.id.register_username);
+        EditText Password = findViewById(R.id.register_password);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
