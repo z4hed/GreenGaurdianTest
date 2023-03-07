@@ -55,7 +55,7 @@ public class register_page extends AppCompatActivity {
                     singletonDatabase stdb = singletonDatabase.getInstance();
                     databaseController dbController = stdb.getDatabaseController();
                     dbController.addProfile(userProfile);
-                    dbController.fetchProfile(userProfile);
+                    dbController.fetchProfile("sdfsdf");
                 }
                 else{
                     //Alert the user that some fields are empty

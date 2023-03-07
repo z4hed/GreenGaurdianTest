@@ -22,6 +22,6 @@ public class singletonDatabase {
 
     public databaseController getDatabaseController()
     {
-        return getDatabaseController();
+        return dbController;
     }
 }
