@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import Models.profile;
 import controllers.databaseController;
@@ -56,6 +57,10 @@ public class register_page extends AppCompatActivity {
                     databaseController dbController = stdb.getDatabaseController();
                     dbController.addProfile(userProfile);
                     dbController.fetchProfile("sdfsdf");
+
+                    //Start New Intent(TEST TO BE REPLACED LATER) ~ zahed
+                    Intent moveToProfile = new Intent(register_page.this, profileDataDisp.class);
+                    startActivity(moveToProfile);
                 }
                 else{
                     //Alert the user that some fields are empty

@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
 import Models.profile;
+import Models.timeSeriesData;
 
 public class databaseController {
 
@@ -29,7 +30,7 @@ public class databaseController {
         sensorReference = db.getReference().child("sensorData");
     }
 
-    //Creating a fetch Query
+    //Creating an add Query to add a profile to database
     public void addProfile(profile toBeAdded) {
         DatabaseReference prof = userProfileRef.child(toBeAdded.getUserName());
         prof.child("firstName").setValue(toBeAdded.getFirstName());
@@ -39,7 +40,7 @@ public class databaseController {
         prof.child("password").setValue(toBeAdded.getPassword());
     }
 
-
+    //Fetch profile from database
     public profile fetchProfile(String toBeFetched)
     {
         Query query = userProfileRef.orderByChild("userName").equalTo(toBeFetched);
@@ -65,6 +66,8 @@ public class databaseController {
         });
 
 
+
+
         return null;
     }
     //callback function for the asynchronously fetched profile object
@@ -73,6 +76,13 @@ public class databaseController {
         savedProf = prof;
         return savedProf;
     }
+    //Add timeSeriesData to the database
+    public void addsensorData(timeSeriesData toBeAdded) {
+        DatabaseReference prof = userProfileRef.child(toBeAdded.getTime().toString());
+        prof.child("time").setValue(toBeAdded.getTime().toString());
+        prof.child("UV").setValue(toBeAdded.getUV());
+        prof.child("Moisture").setValue(toBeAdded.getMoisture());
 
+    }
 
 }
