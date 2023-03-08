@@ -25,10 +25,12 @@ public class sensorDataRetreiver {
         new RetrieveDataTask().execute();
     }
 
+
     private class RetrieveDataTask extends AsyncTask<Void, Void, timeSeriesData> {
 
         private String errorMessage;
 
+        //run in seperate thread than main thread
         @Override
         protected timeSeriesData doInBackground(Void... voids) {
             String inputLine = "";
@@ -80,6 +82,7 @@ public class sensorDataRetreiver {
         }
     }
 
+    //getter and setters
     public timeSeriesData getTsData() {
         return tsData;
     }
@@ -87,7 +90,7 @@ public class sensorDataRetreiver {
     public void setTsData(timeSeriesData tsData) {
         this.tsData = tsData;
     }
-
+    // interface to implement - DONE
     public interface OnDataRetrievedListener {
         void onDataRetrieved(timeSeriesData data);
     }

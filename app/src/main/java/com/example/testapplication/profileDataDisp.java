@@ -37,6 +37,7 @@ public class profileDataDisp extends AppCompatActivity implements sensorDataRetr
         }
     }
 
+    //implement the callback interface function
     @Override
     public void onDataRetrieved(timeSeriesData data) {
         // Do something with the retrieved data
