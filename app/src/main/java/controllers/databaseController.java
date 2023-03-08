@@ -78,8 +78,8 @@ public class databaseController {
     }
     //Add timeSeriesData to the database
     public void addsensorData(timeSeriesData toBeAdded) {
-        DatabaseReference prof = userProfileRef.child(toBeAdded.getTime().toString());
-        prof.child("time").setValue(toBeAdded.getTime().toString());
+        DatabaseReference prof = userProfileRef.child(toBeAdded.getTime());
+        prof.child("time").setValue(toBeAdded.getTime());
         prof.child("UV").setValue(toBeAdded.getUV());
         prof.child("Moisture").setValue(toBeAdded.getMoisture());
 
