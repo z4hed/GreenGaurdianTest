@@ -30,5 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(moveToRegister);
             }
         });
+
+        // Just for test
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sensors_data = new Intent(MainActivity.this, SensorsData.class);
+                startActivity(sensors_data);
+            }
+        });
     }
 }
